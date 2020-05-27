@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_navigationgraph"
+    app:startDestination="@id/home">
+    <fragment
+        android:id="@+id/home"
+        android:name="com.zalocoders.ebook.Views.fragments.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_categoryFragment"
+            app:destination="@id/categories" />
+    </fragment>
+    <fragment
+        android:id="@+id/categories"
+        android:name="com.zalocoders.ebook.Views.fragments.CategoryFragment"
+        android:label="fragment_category"
+        tools:layout="@layout/fragment_category" >
+        <action
+            android:id="@+id/action_categoryFragment_to_libraryFragment"
+            app:destination="@id/library" />
+    </fragment>
+    <fragment
+        android:id="@+id/library"
+        android:name="com.zalocoders.ebook.Views.fragments.LibraryFragment"
+        android:label="LibraryFragment" />
+</navigation>
