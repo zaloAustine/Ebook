@@ -42,11 +42,12 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="V.Read"
-                            android:textColor="@android:color/black"
+                            android:textColor="@color/colorAccent"
                             android:textSize="30sp"
                             android:textStyle="bold" />
 
                         <ImageView
+                            android:id="@+id/search"
                             android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -72,6 +73,7 @@
                 app:tabIndicatorFullWidth="false"
                 android:scrollbars="horizontal"
                 app:tabMode="scrollable"
+                app:tabIndicatorHeight="4dp"
                 app:tabTextAppearance="@style/TextAppearance.AppCompat.Small"
                 app:tabIndicatorColor="@color/colorAccent"
                 app:tabSelectedTextColor="@android:color/black"

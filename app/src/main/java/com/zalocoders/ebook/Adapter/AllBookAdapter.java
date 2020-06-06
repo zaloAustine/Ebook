@@ -5,9 +5,11 @@ import android.animation.ObjectAnimator;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -20,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.chip.Chip;
+import com.google.gson.Gson;
 import com.teleclinic.bulent.smartimageview.SmartImageViewLayout;
 import com.zalocoders.ebook.R;
 import com.zalocoders.ebook.Utils.BookItemClick;
@@ -67,6 +70,7 @@ private static DiffUtil.ItemCallback<Book> DIFF_CALLBack = new DiffUtil.ItemCall
 
 
     Book book = getItem(position);
+        Log.e("book",new Gson().toJson(book,Book.class));
 
     if(book!=null){
         holder.name.setText(book.getName());
@@ -76,18 +80,26 @@ private static DiffUtil.ItemCallback<Book> DIFF_CALLBack = new DiffUtil.ItemCall
 
 
 
-        holder.book.setOnClickListener(new View.OnClickListener() {
+        holder.mSmartImageViewLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 mBookItemClick.onBookCliked(book,holder.mSmartImageViewLayout);
 
-
-
-
-
             }
         });
+
+
+        if(book.getBookMarked().equals("yes")){
+            holder.bookMark.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.fully_saved));
+
+        }else {
+            holder.bookMark.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.save));
+
+        }
+
+
+
     }
 
 
@@ -117,6 +129,7 @@ private static DiffUtil.ItemCallback<Book> DIFF_CALLBack = new DiffUtil.ItemCall
         TextView name,author;
         RatingBar mRatingBar;
         MaterialCardView book;
+        ImageView bookMark;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -125,6 +138,7 @@ private static DiffUtil.ItemCallback<Book> DIFF_CALLBack = new DiffUtil.ItemCall
             author = itemView.findViewById(R.id.author);
             mRatingBar = itemView.findViewById(R.id.rate);
             book = itemView.findViewById(R.id.book);
+            bookMark = itemView.findViewById(R.id.bookMark);
 
 
 

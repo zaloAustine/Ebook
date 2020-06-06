@@ -1,6 +1,12 @@
 package com.zalocoders.ebook.Views.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.paging.PagedList;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,10 +16,12 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
@@ -26,21 +34,23 @@ import com.zalocoders.ebook.Adapter.CategoryAdapter;
 import com.zalocoders.ebook.Adapter.ChapterAdapter;
 import com.zalocoders.ebook.R;
 import com.zalocoders.ebook.Utils.BookItemClick;
+import com.zalocoders.ebook.ViewModels.AllBooks.BookViewModel;
 import com.zalocoders.ebook.models.Book;
 import com.zalocoders.ebook.models.Chapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewBookActivity extends AppCompatActivity  {
+public class ViewBookActivity extends AppCompatActivity   implements BookItemClick{
 
 
     SmartImageViewLayout images;
-    TextView name,author;
+    TextView author;
     RatingBar rate;
     View bottomsheetView;
     Chip category;
     TextView header;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +58,14 @@ public class ViewBookActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_view_book);
 
         images = findViewById(R.id.images);
-        name = findViewById(R.id.name);
         author = findViewById(R.id.author);
         rate = findViewById(R.id.rate);
         category = findViewById(R.id.category);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         recieveIntent();
@@ -63,6 +77,12 @@ public class ViewBookActivity extends AppCompatActivity  {
                 bottomSheet();
             }
         });
+
+
+
+
+
+        FetchAllBooks();
     }
 
     private void bottomSheet() {
@@ -122,18 +142,81 @@ public class ViewBookActivity extends AppCompatActivity  {
             String categoryT = getIntent().getExtras().getString("category");
 
 
-
-
+            getSupportActionBar().setTitle(nameT);
 
 
             images.putImages(image);
-            name.setText(nameT);
             author.setText(authort);
             category.setText(categoryT);
             rate.setRating(Integer.valueOf(rating));
 
 
+    }
+
+
+
+    public void FetchAllBooks(){
+
+       RecyclerView recycler = findViewById(R.id.recycler);
+      LinearLayoutManager  mLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false);
+        recycler.setLayoutManager(mLinearLayoutManager);
+        recycler.setHasFixedSize(true);
+        recycler.setNestedScrollingEnabled(false);
+
+        BookViewModel bookViewModel = ViewModelProviders.of(this).get(BookViewModel.class);
+
+        AllBookAdapter mBookAdapter = new AllBookAdapter(this,this);
+
+        bookViewModel.bookPagedList.observe((LifecycleOwner) this, new Observer<PagedList<Book>>() {
+            @Override
+            public void onChanged(PagedList<Book> books) {
+                mBookAdapter.submitList(books);
+                recycler.setAdapter(mBookAdapter);
+
+
+            }
+        });
+
+
 
     }
 
+
+    @Override
+    public void onBookCliked(Book book, SmartImageViewLayout imageView) {
+
+        //  image,name,author,rating
+        Intent i = new Intent(ViewBookActivity.this, ViewBookActivity.class);
+        i.putExtra("name",book.getName());
+        i.putExtra("author",book.getAuthor());
+        i.putExtra("id",book.getBookId());
+        i.putExtra("image",book.getImage());
+        i.putExtra("rating",String.valueOf(book.getRating()));
+        i.putExtra("category",book.getCategory());
+
+
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(ViewBookActivity.this,imageView,"image");
+        startActivity(i,options.toBundle());
+
+
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()){
+            case android.R.id.home:
+                startActivity(new Intent(this,MainActivity.class));
+
+        }
+        return true;
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(this,MainActivity.class));
+    }
 }

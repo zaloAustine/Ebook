@@ -3,6 +3,7 @@ package com.zalocoders.ebook.Adapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,17 +11,21 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.paging.PagedListAdapter;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.teleclinic.bulent.smartimageview.SmartImageViewLayout;
 import com.zalocoders.ebook.R;
+import com.zalocoders.ebook.Views.Activities.ActionActivity;
 import com.zalocoders.ebook.models.Book;
 import com.zalocoders.ebook.models.Category;
 
 import java.util.List;
 import java.util.Objects;
+
+import static maes.tech.intentanim.CustomIntent.customType;
 
 public class CategoryAdapter extends PagedListAdapter<Category,CategoryAdapter.MyViewHolder> {
 
@@ -50,11 +55,36 @@ public class CategoryAdapter extends PagedListAdapter<Category,CategoryAdapter.M
     if(category!=null){
 
         holder.name.setText(category.getName());
-        holder.mSmartImageViewLayout.putImages(category.getImageUrl());
+
+        try {
+           // holder.mSmartImageViewLayout.putImages(category.getImageUrl());
+
+        }catch (NullPointerException e){
+
+        }
 
     }
 
         setAnimation(holder.itemView,position);
+
+
+    holder.materialCardView.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+
+
+            Intent i  = new Intent(mContext, ActionActivity.class);
+            i.putExtra("id",category.getCategoryId());
+            i.putExtra("name",category.getName());
+            mContext.startActivity(i);
+            customType(mContext,"bottom-to-up");
+
+
+        }
+    });
+
+
     }
 
 
@@ -64,12 +94,14 @@ public class CategoryAdapter extends PagedListAdapter<Category,CategoryAdapter.M
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         SmartImageViewLayout mSmartImageViewLayout;
         TextView name,author;
+        CardView materialCardView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             mSmartImageViewLayout = itemView.findViewById(R.id.images);
             name = itemView.findViewById(R.id.name);
             author =  itemView.findViewById(R.id.author);
+            materialCardView = itemView.findViewById(R.id.materialCardView);
 
         }
     }
@@ -119,5 +151,11 @@ public class CategoryAdapter extends PagedListAdapter<Category,CategoryAdapter.M
         });
         super.onAttachedToRecyclerView(recyclerView);
 
+    }
+
+
+    @Override
+    public int getItemCount() {
+        return 4;
     }
 }

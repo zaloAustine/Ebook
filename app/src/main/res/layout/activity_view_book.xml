@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:scrollbars="vertical"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/preview"
-        style="@style/TextAppearance.AppCompat.Caption"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_weight="1"
-        android:backgroundTint="@color/colorAccent"
-        android:text="Preview book"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 <LinearLayout
     android:orientation="vertical"
@@ -27,7 +20,10 @@
     android:layout_height="match_parent"
     tools:context=".Views.Activities.ViewBookActivity">
 
-
+<androidx.appcompat.widget.Toolbar
+    android:layout_width="match_parent"
+    android:id="@+id/toolbar"
+    android:layout_height="wrap_content"/>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView"
@@ -35,6 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         app:cardCornerRadius="8dp"
+        app:cardElevation="0dp"
         app:rippleColor="@color/colorAccent"
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
@@ -82,15 +79,7 @@
                     android:layout_marginTop="12dp"
                     android:text="Preview" />
 
-                <TextView
-                    android:id="@+id/name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:transitionName="name"
-                    android:layout_marginLeft="12dp"
-                    android:text="The Messy Middle"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
+
 
                 <TextView
                     android:id="@+id/author"
@@ -123,35 +112,63 @@
     </com.google.android.material.card.MaterialCardView>
 
 
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:backgroundTint="@color/colorAccent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="24dp"
+        app:cornerRadius="24dp"
+        app:icon="@drawable/download"
+        android:layout_marginBottom="12dp"
+        app:iconGravity="end"
+        style="@style/TextAppearance.AppCompat.Caption"
+        android:textColor="@android:color/white"
+        android:layout_marginRight="24dp"
+        android:text="Get Full Book"/>
+
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
         android:orientation="horizontal">
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:id="@+id/download"
-            android:backgroundTint="@color/colorAccent"
             android:layout_height="60dp"
+            app:cornerRadius="24dp"
+            app:iconGravity="end"
+            android:elevation="4dp"
+            app:icon="@drawable/chapters"
+            app:iconTint="@color/black"
             style="@style/TextAppearance.AppCompat.Caption"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             android:layout_marginRight="4dp"
-            android:text="Download Full Book"/>
+            android:text="chapters"/>
 
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
             android:layout_weight="1"
+            android:id="@+id/preview"
             style="@style/TextAppearance.AppCompat.Caption"
             android:layout_marginLeft="4dp"
             android:textColor="@color/colorAccent"
             android:layout_height="60dp"
-            android:text="Download Chapters"/>
+            android:elevation="4dp"
+            app:cornerRadius="24dp"
+            app:iconGravity="end"
+            app:icon="@drawable/preview"
+            app:iconTint="@color/black"
+            android:text="Preview"/>
 
     </LinearLayout>
+
 
 
     <TextView
@@ -159,15 +176,28 @@
         android:textSize="16sp"
         android:textColor="@android:color/black"
         android:layout_width="match_parent"
+        android:textStyle="bold"
+        android:layout_marginTop="24dp"
         android:layout_height="wrap_content"
-        android:text="Description"/>
+        android:text="Publisher Description"/>
 
     <TextView
         android:layout_marginLeft="12dp"
         android:layout_width="match_parent"
+        android:textColor="@android:color/darker_gray"
         android:layout_height="wrap_content"
         android:text="@string/bookdesc"/>
 
+
+    <TextView
+        android:layout_marginLeft="12dp"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:layout_width="match_parent"
+        android:textStyle="bold"
+        android:layout_marginTop="24dp"
+        android:layout_height="wrap_content"
+        android:text="More Books From Author"/>
 
 
 
@@ -182,3 +212,4 @@
 </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView
     android:id="@+id/book"
-    android:layout_width="wrap_content"
+    android:layout_width="150dp"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
-    app:cardElevation="4dp"
-    app:cardCornerRadius="4dp"
+    app:cardElevation="0dp"
     app:rippleColor="@color/colorAccent"
     android:foreground="?android:attr/selectableItemBackground"
-    android:clickable="true"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
@@ -16,7 +14,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
@@ -37,18 +35,19 @@
             <TextView
                 android:id="@+id/name"
                 android:transitionName="name"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="8dp"
-                android:lines="1"
+                android:maxLines="1"
+                android:textStyle="bold"
                 android:ellipsize="end"
                 android:text="The Messy Middle"
                 android:textColor="@android:color/black" />
 
             <TextView
                 android:id="@+id/author"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
                 android:lines="1"
@@ -58,6 +57,11 @@
                 android:textColor="@android:color/darker_gray" />
 
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
             <RatingBar
                 android:layout_width="wrap_content"
@@ -70,6 +74,15 @@
                 android:numStars ="5"
                 style="?android:attr/ratingBarStyleSmall"
                 android:layout_height="wrap_content"/>
+
+
+        <ImageView
+            android:id="@+id/bookMark"
+            android:layout_width="30dp"
+            android:layout_marginLeft="12dp"
+            android:layout_height="30dp"/>
+
+    </LinearLayout>
 
         </LinearLayout>
 

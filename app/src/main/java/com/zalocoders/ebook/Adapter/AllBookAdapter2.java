@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -66,7 +67,7 @@ private static DiffUtil.ItemCallback<Book> DIFF_CALLBack = new DiffUtil.ItemCall
         holder.mRatingBar.setRating(book.getRating());
         holder.mSmartImageViewLayout.putImages(book.getImage());
 
-        holder.book.setOnClickListener(new View.OnClickListener() {
+        holder.mSmartImageViewLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -82,6 +83,15 @@ private static DiffUtil.ItemCallback<Book> DIFF_CALLBack = new DiffUtil.ItemCall
 
             }
         });
+
+
+        if(book.getBookMarked().equals("yes")){
+            holder.bookMark.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.fully_saved));
+
+        }else {
+            holder.bookMark.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.save));
+
+        }
     }
 
 
@@ -111,6 +121,7 @@ private static DiffUtil.ItemCallback<Book> DIFF_CALLBack = new DiffUtil.ItemCall
         TextView name,author;
         RatingBar mRatingBar;
         MaterialCardView book;
+        ImageView bookMark;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -119,6 +130,7 @@ private static DiffUtil.ItemCallback<Book> DIFF_CALLBack = new DiffUtil.ItemCall
             author = itemView.findViewById(R.id.author);
             mRatingBar = itemView.findViewById(R.id.rate);
             book = itemView.findViewById(R.id.book);
+            bookMark = itemView.findViewById(R.id.bookMark);
 
         }
     }

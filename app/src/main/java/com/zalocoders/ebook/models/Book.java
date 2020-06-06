@@ -2,8 +2,16 @@ package com.zalocoders.ebook.models;
 
 public class Book {
 
-    private String name,author,BookId,Image,percentage,category;
+    private String name,author,BookId,Image,percentage,category,bookMarked;
     private int progress,rating;
+
+    public String getBookMarked() {
+        return bookMarked;
+    }
+
+    public void setBookMarked(String bookMarked) {
+        this.bookMarked = bookMarked;
+    }
 
     public String getName() {
         return name;
