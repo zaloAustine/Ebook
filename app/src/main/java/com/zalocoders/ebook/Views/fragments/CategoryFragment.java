@@ -1,6 +1,8 @@
 package com.zalocoders.ebook.Views.fragments;
 
+import android.app.ActivityOptions;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,7 +11,6 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.paging.PagedList;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,14 +18,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.material.chip.Chip;
+import com.teleclinic.bulent.smartimageview.SmartImageViewLayout;
 import com.zalocoders.ebook.Adapter.CategoryAdapter;
-import com.zalocoders.ebook.Adapter.CategoryAdapter2;
+import com.zalocoders.ebook.Adapter.TopBookAdapter;
 import com.zalocoders.ebook.R;
+import com.zalocoders.ebook.Utils.BookItemClick;
+import com.zalocoders.ebook.ViewModels.AllBooks.BookViewModel;
 import com.zalocoders.ebook.ViewModels.Category.CategoriesViewModel;
+import com.zalocoders.ebook.Views.Activities.ViewBookActivity;
+import com.zalocoders.ebook.models.Book;
 import com.zalocoders.ebook.models.Category;
 
-public class CategoryFragment extends Fragment {
+public class CategoryFragment extends Fragment implements BookItemClick {
 
     Context mContext;
     private LinearLayoutManager mLayoutManager1;
@@ -57,22 +62,45 @@ public class CategoryFragment extends Fragment {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_category, container, false);
 
-        recycler2 = v.findViewById(R.id.recycler2);
-        mLayoutManager1 = new LinearLayoutManager(mContext);
-        recycler2.setLayoutManager(mLayoutManager1);
-        recycler2.setNestedScrollingEnabled(false);
-        recycler2.setHasFixedSize(true);
 
 
 
-        fetchCategories();
+        fetchTopBooks();
+        fetchCategories2();
         return v;
     }
 
 
-    private void fetchCategories(){
+    private void fetchTopBooks(){
 
-        CategoryAdapter2 categoryAdapter = new CategoryAdapter2(mContext);
+        recycler2 = v.findViewById(R.id.recycler2);
+        mLayoutManager1 = new LinearLayoutManager(mContext,LinearLayoutManager.HORIZONTAL,false);
+        recycler2.setLayoutManager(mLayoutManager1);
+
+        TopBookAdapter adapter = new TopBookAdapter(mContext,this);
+
+
+        BookViewModel bookViewModel = ViewModelProviders.of(this).get(BookViewModel.class);
+        bookViewModel.bookPagedList.observe(getViewLifecycleOwner(), new Observer<PagedList<Book>>() {
+            @Override
+            public void onChanged(PagedList<Book> books) {
+                adapter.submitList(books);
+                recycler2.setAdapter(adapter);
+            }
+        });
+
+
+    }
+
+
+    private void fetchCategories2(){
+
+       RecyclerView recycler = v.findViewById(R.id.recycler);
+      LinearLayoutManager  mLinearLayoutManager = new LinearLayoutManager(mContext,LinearLayoutManager.VERTICAL,false);
+        recycler.setLayoutManager(mLinearLayoutManager);
+
+
+        CategoryAdapter categoryAdapter = new CategoryAdapter(mContext);
 
 
         CategoriesViewModel categoriesViewModel = ViewModelProviders.of(this).get(CategoriesViewModel.class);
@@ -80,10 +108,27 @@ public class CategoryFragment extends Fragment {
             @Override
             public void onChanged(PagedList<Category> categories) {
                 categoryAdapter.submitList(categories);
-                recycler2.setAdapter(categoryAdapter);
+                recycler.setAdapter(categoryAdapter);
 
             }
         });
+
+    }
+
+    @Override
+    public void onBookCliked(Book book, SmartImageViewLayout imageView) {
+        //  image,name,author,rating
+        Intent i = new Intent(mContext, ViewBookActivity.class);
+        i.putExtra("name",book.getName());
+        i.putExtra("author",book.getAuthor());
+        i.putExtra("id",book.getBookId());
+        i.putExtra("image",book.getImage());
+        i.putExtra("rating",String.valueOf(book.getRating()));
+        i.putExtra("category",book.getCategory());
+
+
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(),imageView,"image");
+        startActivity(i,options.toBundle());
 
     }
 }

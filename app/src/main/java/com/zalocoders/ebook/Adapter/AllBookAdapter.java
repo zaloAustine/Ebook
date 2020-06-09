@@ -80,7 +80,7 @@ private static DiffUtil.ItemCallback<Book> DIFF_CALLBack = new DiffUtil.ItemCall
 
 
 
-        holder.mSmartImageViewLayout.setOnClickListener(new View.OnClickListener() {
+        holder.book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

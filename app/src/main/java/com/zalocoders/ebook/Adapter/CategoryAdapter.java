@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,11 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.teleclinic.bulent.smartimageview.SmartImageViewLayout;
 import com.zalocoders.ebook.R;
-import com.zalocoders.ebook.Views.Activities.ActionActivity;
-import com.zalocoders.ebook.models.Book;
+import com.zalocoders.ebook.Views.Activities.CategoryBookActivity;
 import com.zalocoders.ebook.models.Category;
 
-import java.util.List;
 import java.util.Objects;
 
 import static maes.tech.intentanim.CustomIntent.customType;
@@ -73,12 +70,10 @@ public class CategoryAdapter extends PagedListAdapter<Category,CategoryAdapter.M
         public void onClick(View v) {
 
 
-
-            Intent i  = new Intent(mContext, ActionActivity.class);
+            Intent i  = new Intent(mContext, CategoryBookActivity.class);
             i.putExtra("id",category.getCategoryId());
             i.putExtra("name",category.getName());
             mContext.startActivity(i);
-            customType(mContext,"bottom-to-up");
 
 
         }
@@ -154,8 +149,4 @@ public class CategoryAdapter extends PagedListAdapter<Category,CategoryAdapter.M
     }
 
 
-    @Override
-    public int getItemCount() {
-        return 4;
-    }
 }

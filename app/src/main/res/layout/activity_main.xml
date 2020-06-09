@@ -1,127 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <androidx.cardview.widget.CardView
-        app:cardElevation="8dp"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            app:cardElevation="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <com.google.android.material.appbar.MaterialToolbar
-                    android:id="@+id/materialToolbar"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.appbar.MaterialToolbar
+                        android:id="@+id/materialToolbar"
+                        android:layout_width="match_parent"
+                        app:title="V.Read"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+
+                    </com.google.android.material.appbar.MaterialToolbar>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="4dp"
+                        app:cardCornerRadius="10dp" />
+                </LinearLayout>
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tablayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:scrollbars="horizontal"
+                    app:tabIconTint="@android:color/darker_gray"
+                    app:tabIndicatorColor="@color/colorAccent"
+                    app:tabIndicatorFullWidth="false"
+                    app:tabIndicatorHeight="4dp"
+                    app:tabSelectedTextColor="@android:color/black"
+                    app:tabTextAppearance="@style/TextAppearance.AppCompat.Small">
 
-                    <LinearLayout
+                    <com.google.android.material.tabs.TabItem
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <com.google.android.material.textview.MaterialTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="V.Read"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="30sp"
-                            android:textStyle="bold" />
-
-                        <ImageView
-                            android:id="@+id/search"
-                            android:layout_gravity="center"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="24dp"
-                            android:src="@drawable/search324"/>
-
-                    </LinearLayout>
+                        android:icon="@drawable/categories"
+                        android:text="All books" />
 
 
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:icon="@drawable/search"
+                        android:text="Search" />
 
-                </com.google.android.material.appbar.MaterialToolbar>
 
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:elevation="4dp"
-                    app:cardCornerRadius="10dp"/>
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:icon="@drawable/save"
+                        android:text="Saved Books" />
+
+                </com.google.android.material.tabs.TabLayout>
+
+
             </LinearLayout>
 
-            <com.google.android.material.tabs.TabLayout
-                android:layout_width="match_parent"
-                android:id="@+id/tablayout"
-                app:tabIndicatorFullWidth="false"
-                android:scrollbars="horizontal"
-                app:tabMode="scrollable"
-                app:tabIndicatorHeight="4dp"
-                app:tabTextAppearance="@style/TextAppearance.AppCompat.Small"
-                app:tabIndicatorColor="@color/colorAccent"
-                app:tabSelectedTextColor="@android:color/black"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.tabs.TabItem
-                    android:text="All books"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <com.google.android.material.tabs.TabItem
-                    android:text="Audio books"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="match_parent"
-                    android:text="Categories"
-                    android:layout_height="wrap_content"/>
-
-                <com.google.android.material.tabs.TabItem
-                    android:text="My Books"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="match_parent"
-                    android:text="My Chapters"
-                    android:layout_height="wrap_content"/>
-
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="match_parent"
-                    android:text="Saved Books"
-                    android:layout_height="wrap_content"/>
-
-            </com.google.android.material.tabs.TabLayout>
+        </androidx.cardview.widget.CardView>
 
 
-        </LinearLayout>
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-    </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
 
 
 
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

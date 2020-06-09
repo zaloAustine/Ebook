@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="12">
+
+    <TextView
+        android:gravity="right"
+        android:textSize="22sp"
+        android:id="@+id/skip"
+        android:textStyle="bold"
+        android:layout_marginRight="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SKIP"/>
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="3"
+        android:gravity="center">
+
+
+        <LinearLayout
+            android:id="@+id/layoutDots"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dots_height"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="35dp"
+                android:layout_height="5dp"
+                android:background="@drawable/onboarding_dotunselected"/>
+            <TextView
+                android:layout_width="35dp"
+                android:layout_height="5dp"
+                android:background="@drawable/onboarding_dotunselected"/>
+            <TextView
+                android:layout_width="35dp"
+                android:layout_height="5dp"
+                android:background="@drawable/onboarding_dotunselected"/>
+        </LinearLayout>
+
+        <TextView
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@android:color/darker_gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="The art of reading is deep within"/>
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -40,7 +40,7 @@ public class MyBookFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        v = inflater.inflate(R.layout.chapters_fragment, container, false);
+        v = inflater.inflate(R.layout.mybooks_fragment, container, false);
 
         recycler = v.findViewById(R.id.recycler);
         mLayoutManager = new LinearLayoutManager(context);

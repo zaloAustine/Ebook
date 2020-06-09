@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView
     android:id="@+id/materialCardView"
-    android:layout_width="200dp"
-    android:layout_height="100dp"
-    android:layout_margin="8dp"
-    app:cardElevation="4dp"
-    app:cardCornerRadius="12dp"
-    app:cardBackgroundColor="@color/gray"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="4dp"
+    android:background="#F5F6FC"
+    android:clickable="true"
     app:rippleColor="@color/colorAccent"
     android:foreground="?android:attr/selectableItemBackground"
     app:layout_constraintEnd_toEndOf="parent"
@@ -17,15 +16,11 @@
 
 
 
-
-
-
-
-
     <LinearLayout
         android:layout_weight="1"
         android:layout_gravity="center"
         android:gravity="center"
+        android:layout_margin="8dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -35,8 +30,8 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="left"
             android:layout_marginLeft="12dp"
-            android:textSize="20sp"
             android:layout_marginRight="8dp"
             android:text="The Messy Middle"
             android:textColor="@android:color/black" />

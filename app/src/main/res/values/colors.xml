@@ -6,4 +6,13 @@
     <color name="colorAccent">#000000</color>
     <color name="white">@android:color/white</color>
     <color name="gray">#E5E5E5</color>
+
+    <!--colors for modern ui-->
+    <color name="whiteTextColor">#fff</color>
+    <color name="blackTextColor">#000</color>
+
+
+    <!--colros for recomend a course-->
+    <color name="whiteCardColor">#fff</color>
+
 </resources>

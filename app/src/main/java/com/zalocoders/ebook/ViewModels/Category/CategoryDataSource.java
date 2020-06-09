@@ -58,24 +58,37 @@ public class CategoryDataSource extends PageKeyedDataSource<Integer, Category> {
 
         Category category = new Category();
         category.setName("Comic Book or Graphic Novel");
+        category.setImageUrl("https://www.placeinprint.com/sites/default/files/products/list/EastLondonOpinionated_front2.png");
         mCategoryList.add(category);
 
         Category category1 = new Category();
         category1.setName("Action and Adventure.");
+        category1.setImageUrl("https://www.placeinprint.com/sites/default/files/products/list/EastLondonOpinionated_front2.png");
         mCategoryList.add(category1);
 
         Category category2 = new Category();
         category2.setName("Classics");
+        category2.setImageUrl("https://www.placeinprint.com/sites/default/files/products/list/EastLondonOpinionated_front2.png");
         mCategoryList.add(category2);
 
         Category category3 = new Category();
         category3.setName("Historical Fiction");
+        category3.setImageUrl("https://www.placeinprint.com/sites/default/files/products/list/EastLondonOpinionated_front2.png");
         mCategoryList.add(category3);
 
 
         Category category4 = new Category();
         category4.setName("Horror");
+        category4.setImageUrl("https://www.placeinprint.com/sites/default/files/products/list/EastLondonOpinionated_front2.png");
         mCategoryList.add(category4);
+
+        Category category5 = new Category();
+        category5.setName("Fiction");
+        category5.setImageUrl("https://www.placeinprint.com/sites/default/files/products/list/EastLondonOpinionated_front2.png");
+
+        mCategoryList.add(category5);
+        mCategoryList.add(category5);
+        mCategoryList.add(category5);
 
 
 

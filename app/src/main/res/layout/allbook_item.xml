@@ -3,7 +3,6 @@
     android:id="@+id/book"
     android:layout_width="150dp"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
     app:cardElevation="0dp"
     app:rippleColor="@color/colorAccent"
     android:foreground="?android:attr/selectableItemBackground"
@@ -23,7 +22,6 @@
             android:layout_height="150dp"
             android:id="@+id/images"
             android:transitionName="image"
-            android:layout_gravity="center"
             android:layout_marginBottom="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +38,6 @@
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="8dp"
                 android:maxLines="1"
-                android:textStyle="bold"
                 android:ellipsize="end"
                 android:text="The Messy Middle"
                 android:textColor="@android:color/black" />

@@ -3,6 +3,7 @@
     package="com.zalocoders.ebook">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +13,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Views.Activities.ActionActivity"></activity>
+        <activity android:name=".Views.Activities.AccountActivity"></activity>
+        <activity android:name=".Views.Activities.LibraryActivity" />
+        <activity android:name=".Views.Activities.CategoryBookActivity" />
+        <activity android:name=".Views.Activities.OnBoadingActivity" />
+        <activity android:name=".Views.Authentication.SignupActivity" />
+        <activity android:name=".Views.Authentication.LoginActivity" />
         <activity android:name=".Views.Activities.ViewBookActivity" />
         <activity android:name=".Views.Activities.MainActivity">
             <intent-filter>

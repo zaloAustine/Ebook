@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView
-    android:id="@+id/materialCardView"
-    android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:id="@+id/book"
+    android:layout_width="280dp"
+    android:layout_height="200dp"
     android:layout_margin="4dp"
     app:cardElevation="4dp"
     app:cardCornerRadius="12dp"
@@ -18,15 +18,14 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
 
         <com.teleclinic.bulent.smartimageview.SmartImageViewLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="match_parent"
             android:id="@+id/images"
-            android:layout_marginBottom="4dp"
-            android:layout_weight="3"
+            android:layout_weight="1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -47,7 +46,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
-            android:textSize="20sp"
+            android:textSize="16sp"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:layout_marginRight="8dp"
             android:text="The Messy Middle"
             android:textColor="@android:color/black" />

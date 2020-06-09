@@ -1,17 +1,16 @@
 package com.zalocoders.ebook.Views.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.core.widget.NestedScrollView;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
+import androidx.cardview.widget.CardView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 
 
 import com.google.android.material.appbar.MaterialToolbar;
@@ -19,21 +18,17 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.tabs.TabLayout;
 import com.zalocoders.ebook.Adapter.HomePageAdapter;
-import com.zalocoders.ebook.Adapter.PageAdapter;
 import com.zalocoders.ebook.R;
-
-import static maes.tech.intentanim.CustomIntent.customType;
 
 
 public class MainActivity extends AppCompatActivity {
 
 
-    Chip library;
     ViewPager viewPager;
     TabLayout tabLayout;
     MaterialToolbar materialToolbar;
     HomePageAdapter pagerAdapter;
-    ImageView search;
+    BottomNavigationView bottomNavigationView;
 
 
 
@@ -43,32 +38,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        initViews();
+
+        materialToolbar = findViewById(R.id.materialToolbar);
+        setSupportActionBar(materialToolbar);
+
+
+
 
         Navigations();
 
-        search = findViewById(R.id.search);
-        search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent i  = new Intent(MainActivity.this, ActionActivity.class);
-                i.putExtra("name","Looking for a book ?");
-                startActivity(i);
-                customType(MainActivity.this,"bottom-to-up");
-            }
-        });
-
     }
-
-    private void initViews() {
-
-
-
-
-
-    }
-
 
 
 
@@ -78,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPager);
         tabLayout = findViewById(R.id.tablayout);
 
-        materialToolbar = findViewById(R.id.materialToolbar);
 
         tabLayout.canScrollHorizontally(View.SCROLL_AXIS_HORIZONTAL);
 
@@ -88,11 +66,13 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(pagerAdapter);
 
 
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
 
                 viewPager.setCurrentItem(tab.getPosition());
+
 
             }
 
@@ -113,10 +93,40 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
+        switch (item.getItemId()){
+            case R.id.library:
+                Intent i = new Intent(this, LibraryActivity.class);
+                startActivity(i);
+                break;
+            case R.id.account:
+                Intent i2 = new Intent(this, AccountActivity.class);
+                startActivity(i2);
+                break;
+        }
+
+        return true;
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
 
+       MenuItem item = menu.findItem(R.id.home);
+
+        inflater.inflate(R.menu.menu_home, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

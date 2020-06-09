@@ -39,7 +39,7 @@ import com.zalocoders.ebook.models.Category;
 public class HomeFragment extends Fragment implements BookItemClick {
    private Context mContext;
     private LinearLayoutManager mLayoutManager1,mLinearLayoutManager,mLinearLayoutManager3,mLinearLayoutManager4;
-   private RecyclerView recycler,recycler2,recycler3,recycler4;
+   private RecyclerView recycler,recycler3,recycler4;
     private View v;
 
     public HomeFragment() {
@@ -69,11 +69,6 @@ public class HomeFragment extends Fragment implements BookItemClick {
         v =  inflater.inflate(R.layout.fragment_home, container, false);
 
 
-        recycler2 = v.findViewById(R.id.recycler2);
-        mLayoutManager1 = new GridLayoutManager(mContext,2,GridLayoutManager.HORIZONTAL,false);
-        recycler2.setLayoutManager(mLayoutManager1);
-        recycler2.setNestedScrollingEnabled(false);
-        recycler2.setHasFixedSize(true);
 
         recycler = v.findViewById(R.id.recycler);
         mLinearLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL,false);
@@ -98,7 +93,6 @@ public class HomeFragment extends Fragment implements BookItemClick {
 
 
         FetchAllBooks();
-        fetchCategories();
 
 
         initViews();
@@ -139,22 +133,6 @@ public class HomeFragment extends Fragment implements BookItemClick {
     }
 
 
-    private void fetchCategories(){
-
-        CategoryAdapter categoryAdapter = new CategoryAdapter(mContext);
-
-
-        CategoriesViewModel categoriesViewModel = ViewModelProviders.of(this).get(CategoriesViewModel.class);
-        categoriesViewModel.categoryPagedList.observe((LifecycleOwner) mContext, new Observer<PagedList<Category>>() {
-            @Override
-            public void onChanged(PagedList<Category> categories) {
-                categoryAdapter.submitList(categories);
-                recycler2.setAdapter(categoryAdapter);
-
-            }
-        });
-
-    }
 
     @Override
     public void onBookCliked(Book book, SmartImageViewLayout imageView) {

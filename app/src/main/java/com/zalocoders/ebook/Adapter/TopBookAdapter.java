@@ -3,7 +3,7 @@ package com.zalocoders.ebook.Adapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,22 +17,25 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.card.MaterialCardView;
+import com.google.gson.Gson;
 import com.teleclinic.bulent.smartimageview.SmartImageViewLayout;
 import com.zalocoders.ebook.R;
-import com.zalocoders.ebook.Views.Activities.ViewBookActivity;
+import com.zalocoders.ebook.Utils.BookItemClick;
 import com.zalocoders.ebook.models.Book;
 
 import java.util.Objects;
 
-public class AllBookAdapter2 extends PagedListAdapter<Book, AllBookAdapter2.MyViewHolder> {
+public class TopBookAdapter extends PagedListAdapter<Book, TopBookAdapter.MyViewHolder> {
 
     private  Context mContext;
     public boolean on_attach = true;
+    private BookItemClick mBookItemClick;
 
 
-    public AllBookAdapter2(Context context) {
+    public TopBookAdapter(Context context, BookItemClick listener) {
         super(DIFF_CALLBack);
         this.mContext = context;
+        this.mBookItemClick = listener;
     }
 
 
@@ -48,10 +51,11 @@ private static DiffUtil.ItemCallback<Book> DIFF_CALLBack = new DiffUtil.ItemCall
     }
 };
 
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.allbook_item2,parent,false);
+        View v = LayoutInflater.from(mContext).inflate(R.layout.topbook_item,parent,false);
         return new MyViewHolder(v);
     }
 
@@ -60,38 +64,27 @@ private static DiffUtil.ItemCallback<Book> DIFF_CALLBack = new DiffUtil.ItemCall
 
 
     Book book = getItem(position);
+        Log.e("book",new Gson().toJson(book,Book.class));
 
     if(book!=null){
         holder.name.setText(book.getName());
         holder.author.setText(book.getAuthor());
-        holder.mRatingBar.setRating(book.getRating());
         holder.mSmartImageViewLayout.putImages(book.getImage());
+
+
 
         holder.book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(mContext, ViewBookActivity.class);
-                i.putExtra("name",book.getName());
-                i.putExtra("author",book.getAuthor());
-                i.putExtra("id",book.getBookId());
-                i.putExtra("image",book.getImage());
-                i.putExtra("rating",String.valueOf(book.getRating()));
-                i.putExtra("category",book.getCategory());
-
-                mContext.startActivity(i);
+                mBookItemClick.onBookCliked(book,holder.mSmartImageViewLayout);
 
             }
         });
 
 
-        if(book.getBookMarked().equals("yes")){
-            holder.bookMark.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.fully_saved));
 
-        }else {
-            holder.bookMark.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.save));
 
-        }
     }
 
 
@@ -130,7 +123,7 @@ private static DiffUtil.ItemCallback<Book> DIFF_CALLBack = new DiffUtil.ItemCall
             author = itemView.findViewById(R.id.author);
             mRatingBar = itemView.findViewById(R.id.rate);
             book = itemView.findViewById(R.id.book);
-            bookMark = itemView.findViewById(R.id.bookMark);
+
 
         }
     }

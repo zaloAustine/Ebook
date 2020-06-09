@@ -96,4 +96,27 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="bookdesc">Now a Netflix original series! Unorthodox is the bestselling memoir of a young Jewish woman’s escape from a religious sect, in the tradition of Ayaan Hirsi Ali’s Infidel and Carolyn Jessop’s Escape, featuring a new epilogue by the author</string>
     <string name="preview">The Mamba Mentality: How I Play is Kobe Bryant’s personal perspective of his life and career on the basketball court and his exceptional, insightful style of playing the game—a fitting legacy from the late Los Angeles Laker superstar. In the wake of his retirement from professional basketball, Kobe “The Black Mamba” Bryant decided to share his vast knowledge and understanding of the game to take readers on an unprecedented journey to the core of the legendary “Mamba mentality. They’ll also get fascinating granular detail as he breaks down specific plays and match-ups from throughout his career. Bryant’s detailed accounts are paired with stunning photographs by the Hall of Fame photographer Andrew D. Bernstein. Bernstein, long the Lakers and NBA official photographer, captured Bryant’s very first NBA photo in 1996 and his last in 2016—and hundreds of thousands in between, the record of a unique, twenty-year relationship between one athlete and one photographer. The combination of Bryant’s narrative and Bernstein’s photos make The Mamba Mentality an unprecedented look behind the curtain at the career of one of the world’s most celebrated and fascinating athletes.</string>
+
+
+    <!--onboarding designs-->
+    <string name="onboardingWelcomeContent">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </string>
+    <string name="onboardingSpinWinContent">Be specific about what you want to read and when, setting deadlines for finishing each book or even each chapter.</string>
+    <string name="onboardingRecommenderContent">Get tailored, targeted experiences for your best prospects without losing sleep over the creation of hundreds of pieces of content. </string>
+    <string name="onboarding_welcome_3">Welcome 3</string>
+    <string name="onboarding_welcome_2">Welcome 2</string>
+    <string name="onboarding_welcome_1">Welcome</string>
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
 </resources>
